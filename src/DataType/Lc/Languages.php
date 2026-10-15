@@ -1,0 +1,26 @@
+<?php
+namespace suggest\DataType\Lc;
+
+use suggest\DataType\AbstractDataType;
+use suggest\Suggester\Lc\Suggest;
+
+class Languages extends AbstractDataType
+{
+    public function getSuggester()
+    {
+        return new Suggest(
+            $this->services->get('Omeka\HttpClient'),
+            'https://id.loc.gov/vocabulary/languages/suggest'
+        );
+    }
+
+    public function getName()
+    {
+        return 'valuesuggest:lc:languages';
+    }
+
+    public function getLabel()
+    {
+        return 'LC: MARC Languages'; // @translate
+    }
+}
